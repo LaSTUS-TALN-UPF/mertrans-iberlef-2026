@@ -491,6 +491,16 @@ html[data-theme="dark"] .pill {
     flex-wrap: wrap;
 }
 
+.footer-meta {
+    text-align: right;
+}
+
+.footer-credit {
+    margin-top: 6px;
+    font-size: 0.95rem;
+}
+
+
 @media (max-width: 920px) {
     .hero-inner {
         grid-template-columns: 1fr;
