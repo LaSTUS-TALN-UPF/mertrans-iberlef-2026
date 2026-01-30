@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description"
+          content="MER-TRANS (IberLef 2026) — Shared Task on Multilingual Easy-to-Read Translation for Catalan, Italian, and Spanish."/>
+    <title>MER-TRANS</title>
+    <meta property="og:title" content="MER-TRANS @ IberLef 2026"/>
+    <meta property="og:description"
+          content="First Shared Task on Multilingual Easy-to-Read Translation (Catalan, Italian, Spanish + surprise language)."/>
+    <meta property="og:type" content="website"/>
+    <link rel="icon" href="assets/icons/favicon.png" type="image/svg+xml"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand-mark" aria-hidden="true">MT</div>
+            <div class="brand-text">
+                <div class="brand-title">MER-TRANS</div>
+                <div class="brand-subtitle">IberLef 2026 · Multilingual Easy-to-Read Translation</div>
+            </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary navigation">
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+                Menu
+            </button>
+            <div id="nav-links" class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#task">Task</a>
+                <a href="#data">Data</a>
+                <a href="#evaluation">Evaluation</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#organizers">Organizers</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<button
+        class="theme-toggle floating"
+        type="button"
+        id="themeToggle"
+        aria-label="Toggle light/dark theme"
+        aria-pressed="false"
+>
+    <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+    <span class="theme-toggle__text">Dark</span>
+</button>
+
+
+<main id="main">
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <h1>First Shared Task on Multilingual Easy-to-Read Translation</h1>
+                <p class="lead">
+                    Advance methods for producing <strong>easy-to-read</strong> versions of texts, with a focus on
+                    <strong>Catalan</strong>, <strong>Italian</strong>, and <strong>Spanish</strong> (plus a surprise
+                    language).
+                </p>
+
+                <div class="cta-row">
+                    <a class="btn primary" href="https://forms.gle/ESxbUjVc9xr3iT4YA" target="_blank" rel="noopener">Registration</a>
+                    <a class="btn" href="#" target="_blank" rel="noopener">Mailing List</a>
+                    <button class="btn" type="button" id="icsBtn">Download Dates (.ics)</button>
+                </div>
+
+                <div class="hero-badges" aria-label="Key facts">
+                    <span class="badge">Languages: CA · IT · ES (+ surprise)</span>
+                    <span class="badge">Up to 3 submissions / language</span>
+                    <span class="badge">Data: iDEM corpus (JSON)</span>
+                </div>
+            </div>
+
+            <div class="hero-card" role="note" aria-label="Quick links">
+                <h2>Quick Links</h2>
+                <ul class="clean-list">
+                    <li><a href="#schedule">Important dates</a></li>
+                    <li><a href="#data">Data format & resources</a></li>
+                    <li><a href="#evaluation">Metrics</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="callout">
+                    <strong>Supported by:</strong> Horizon Europe <span class="mono">iDEM</span> project
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="section">
+        <div class="container">
+            <h2>Overview</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Why Easy-to-Read?</h3>
+                    <p>
+                        Accessible language supports participation for people with language comprehension difficulties
+                        (e.g., intellectual disabilities, low literacy), aligning with accessibility and inclusion
+                        goals.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>What’s new here</h3>
+                    <p>
+                        MER-TRANS is a multilingual shared task targeting Romance languages (Catalan, Italian, Spanish)
+                        and introducing multilingual easy-to-read translation at shared-task scale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="task" class="section alt">
+        <div class="container">
+            <h2>Task</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Objective</h3>
+                    <p>
+                        Automatically produce <strong>easy-to-read</strong> versions of texts or sentences.
+                        Inputs are complex excerpts; outputs should be simplified, readable, and meaning-preserving.
+                    </p>
+                    <ul>
+                        <li>Primary languages: Catalan, Italian, Spanish</li>
+                        <li>Surprise task language: disclosed closer to test release</li>
+                        <li>Max submissions: up to 3 runs per language per team</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Scope</h3>
+                    <p>
+                        Texts come from a domain-focused corpus (democratic participation) simplified by experts
+                        following easy-to-read recommendations and validation procedures.
+                    </p>
+                    <p class="muted">
+                        Tip: design systems that generalize—avoid overfitting to a single dataset style.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="data" class="section">
+        <div class="container">
+            <h2>Data & Resources</h2>
+
+            <div class="grid two">
+                <div class="card">
+                    <h3>Corpus: iDEM (E2R)</h3>
+                    <ul>
+                        <li>Original + simplified versions aligned at sentence level</li>
+                        <li>Not parallel across languages (but each language has original↔simplified pairs)</li>
+                        <li>Authentic variation; multiple text types (informative, news, policy, etc.)</li>
+                        <li><strong>Format:</strong> JSON, one file per language with metadata</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Training data policy</h3>
+                    <p>
+                        No task-specific training set is released. Teams may use existing simplification/adaptation
+                        resources
+                        (including cross-lingual augmentation).
+                    </p>
+                    <details>
+                        <summary>Examples of relevant external datasets:</summary>
+                        <ul>
+                            <li>
+                                <a href="https://sid.usal.es/idocs/F8/FDO26144/Simplext.pdf" target="_blank"
+                                   rel="noopener noreferrer">Simplext</a> (ES),
+                                <a href="https://huggingface.co/datasets/saul1917/FEINA" target="_blank"
+                                   rel="noopener noreferrer">FEINA</a> (ES),
+                                <a href="https://sites.google.com/gcloud.ua.es/clears/dataset" target="_blank"
+                                   rel="noopener noreferrer">CLEARS @ IberLEF 2025</a> (ES)
+                            </li>
+                            <li>
+                                <a href="https://github.com/dhfbk/simpitiki" target="_blank" rel="noopener noreferrer">SIMPITIKI</a>
+                                (IT)
+                            </li>
+                            <li>
+                                <a href="https://zenodo.org/records/1410451" target="_blank" rel="noopener noreferrer">Newsela</a>
+                                (EN),
+                                <a href="https://www.cs.pomona.edu/~dkauchak/simplification/" target="_blank"
+                                   rel="noopener noreferrer">Wikipedia↔Simple Wikipedia</a>,
+                                <a href="https://github.com/facebookresearch/asset" target="_blank"
+                                   rel="noopener noreferrer">ASSET</a> (EN)
+                            </li>
+                            <li>
+                                <a href="https://github.com/LaSTUS-TALN-UPF/TSAR-2022-Shared-Task" target="_blank"
+                                   rel="noopener noreferrer">TSAR</a> (lexical simplification),
+                                <a href="https://github.com/MLSP2024/MLSP_Data" target="_blank"
+                                   rel="noopener noreferrer">MLSP</a> (lexical complexity/pipeline)
+                            </li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Trial & Test</h3>
+                <ul>
+                    <li><strong>Trial:</strong> small set with complex excerpts + reference easy-to-read versions</li>
+                    <li><strong>Test:</strong> complex excerpts only (systems generate simplified outputs)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="evaluation" class="section alt">
+        <div class="container">
+            <h2>Evaluation</h2>
+            <div class="grid three">
+                <div class="card">
+                    <h3>Surface similarity</h3>
+                    <p><strong>BLEU</strong> — compares system output to reference simplifications.</p>
+                </div>
+                <div class="card">
+                    <h3>Simplification-focused</h3>
+                    <p><strong>SARI</strong> — measures add/keep/delete operations vs input and references.</p>
+                </div>
+                <div class="card">
+                    <h3>Semantic similarity</h3>
+                    <p><strong>BERTScore</strong> and <strong>MeaningBERT</strong> — meaning preservation signals.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Readability / Complexity</h3>
+                <p>
+                    Readability metrics and complexity classifiers may complement the core metrics to assess
+                    accessibility.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="section">
+        <div class="container">
+            <h2>Schedule</h2>
+            <div class="card">
+                <div class="schedule-toolbar">
+                    <div class="pill" aria-label="Timezone">Timezone: Europe/Madrid</div>
+                    <button class="btn small" type="button" id="copyScheduleBtn">Copy dates as text</button>
+                </div>
+
+                <div class="table-wrap" role="region" aria-label="Important dates table" tabindex="0">
+                    <table class="table" id="scheduleTable">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Milestone</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid two">
+                <div class="card">
+                    <h3>Participation</h3>
+                    <ul>
+                        <li>Registration window: <span class="mono">Feb 2–28, 2026</span></li>
+                        <li>Submissions: up to 3 per language per team</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Papers</h3>
+                    <ul>
+                        <li>Paper due: <span class="mono">Jun 1, 2026</span></li>
+                        <li>Acceptance: <span class="mono">Jun 14, 2026</span></li>
+                        <li>Camera-ready: <span class="mono">Jun 21, 2026</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="organizers" class="section alt">
+        <div class="container">
+            <h2>Organization team</h2>
+            <ul class="clean-list organizers-list">
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/horacio_saggion.jpg"
+                         alt="Horacio Saggion"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:horacio.saggion@upf.edu"
+                                                           title="horacio.saggion@upf.edu">Horacio Saggion</a></strong>
+                        — Universitat Pompeu Fabra, Spain
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/nelson_perez_rojas.jpg"
+                         alt="Nelson Perez Rojas"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:nelson.perezrojas@ucr.ac.cr"
+                                                           title="nelson.perezrojas@ucr.ac.cr">Nelson Perez
+                        Rojas</a></strong> — Universidad de Costa Rica, Central America
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/mehrzad_tareh.jpg" alt="Mehrzad Tareh"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:mehrzad.tareh@upf.edu"
+                                                           title="mehrzad.tareh@upf.edu">Mehrzad Tareh</a></strong> —
+                        Universitat Pompeu Fabra, Spain
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/daniel_adanza.jpg" alt="Daniel Adanza"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:daniel.adanza@upf.edu"
+                                                           title="daniel.adanza@upf.edu">Daniel Adanza</a></strong> —
+                        Universitat Pompeu Fabra, Spain
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/stefan_bott.png" alt="Stefan Bott"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:stefan.bott@upf.edu"
+                                                           title="stefan.bott@upf.edu">Stefan Bott</a></strong> —
+                        Universitat Pompeu Fabra, Spain
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/noran_khallaf.jpg" alt="Nouran Khallaf"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:n.khallaf@leeds.ac.uk"
+                                                           title="n.khallaf@leeds.ac.uk">Nouran Khallaf</a></strong> —
+                        University of Leeds, England
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/almudena_rascon.jpg"
+                         alt="Almudena Rascon"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:almudena.rascon@plenainclusionmadrid.org"
+                                                           title="almudena.rascon@plenainclusionmadrid.org">Almudena
+                        Rascon</a></strong> — Plena Inclusion Madrid, Spain
+                    </div>
+                </li>
+
+                <li>
+                    <img class="organizer-avatar" src="assets/images/organizers/sandra_szasz.jpg" alt="Sandra Szasz"
+                         loading="lazy" decoding="async" width="40" height="40"/>
+                    <div class="organizer-text"><strong><a href="mailto:sandra.szasz@upf.edu"
+                                                           title="sandra.szasz@upf.edu">Sandra Szasz</a></strong> —
+                        Universitat Pompeu Fabra, Spain
+                    </div>
+                </li>
+            </ul>
+
+            <div class="card">
+                <h3>Roles (at a glance)</h3>
+                <ul>
+                    <li>Baselines & evaluation support</li>
+                    <li>Software development & repository maintenance</li>
+                    <li>Corpus development & easy-to-read guidance</li>
+                    <li>Web presence & CEUR proceedings coordination</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Primary contact</h3>
+                    <p>
+                        <strong>Horacio Saggion</strong><br/>
+                        Universitat Pompeu Fabra (UPF)<br/>
+                        <span class="muted">Email:</span>
+                        <button class="linklike" type="button" id="emailBtn"
+                                aria-label="Copy contact email to clipboard">
+                            horacio.saggion@upf.edu
+                        </button>
+                    </p>
+                    <small class="muted">
+                        Don’t forget to include the <strong>shared task name</strong> in the email subject.
+                    </small>
+                </div>
+
+                <div class="card">
+                    <h3>Ethics</h3>
+                    <p>
+                        The dataset was created within the iDEM project under strict ethics protocols and in compliance
+                        with European data protection requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <strong>MER-TRANS @ <a href="https://sites.google.com/view/iberlef-2026/" target="_blank"
+                                       rel="noopener noreferrer">IberLef 2026</a></strong>
+                <div class="muted">Multilingual Easy-to-Read Translation Shared Task</div>
+            </div>
+            <div class="muted">
+                © <span id="year"></span> · Last updated: <span id="lastUpdated"></span>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script src="js/script.js"></script>
+
+<button class="to-top" type="button" id="toTopBtn" aria-label="Back to top">↑</button>
+
+</body>
+</html>
