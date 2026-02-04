@@ -452,6 +452,13 @@ html[data-theme="dark"] .table td {
     flex-wrap: wrap;
 }
 
+.table-note {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+
 .pill {
     padding: 6px 10px;
     border-radius: 999px;
