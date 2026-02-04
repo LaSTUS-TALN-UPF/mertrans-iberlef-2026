@@ -54,7 +54,7 @@ function initTheme() {
 // Schedule data
 // ------------------------
 const schedule = [
-    {date: "2026-02-02", title: "Registration opens"},
+    {date: "2026-02-16", title: "Registration opens"},
     {date: "2026-02-28", title: "Registration closes"},
     {date: "2026-03-06", title: "Trial data release"},
     {date: "2026-04-06", title: "Test data release"},
