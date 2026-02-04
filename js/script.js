@@ -74,6 +74,7 @@ function fmtDate(iso) {
 function escapeHtml(s) {
     return String(s)
         .replaceAll("&", "&amp;")
+        .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
@@ -86,11 +87,11 @@ function renderScheduleTable() {
 
     const items = [...schedule].sort((a, b) => a.date.localeCompare(b.date));
     tbody.innerHTML = items.map(item => `
-    <tr>
-      <td class="mono">${fmtDate(item.date)}</td>
-      <td>${escapeHtml(item.title)}</td>
-    </tr>
-  `).join("");
+      <tr>
+        <td>${escapeHtml(item.title)}</td>
+        <td class="mono">${fmtDate(item.date)}</td>
+      </tr>
+    `).join("");
 }
 
 // ------------------------
@@ -125,13 +126,15 @@ function setupCopyDates() {
     btn.addEventListener("click", async () => {
         const lines = [...schedule]
             .sort((a, b) => a.date.localeCompare(b.date))
-            .map(x => `${fmtDate(x.date)} — ${x.title}`)
+            // Table order after swap: Milestone — Date
+            .map(x => `${x.title}: ${fmtDate(x.date)}`)
             .join("\n");
 
         try {
             await navigator.clipboard.writeText(lines);
+            const original = btn.textContent;
             btn.textContent = "Copied!";
-            setTimeout(() => (btn.textContent = "Copy dates as text"), 1200);
+            setTimeout(() => (btn.textContent = original || "Copy dates as text"), 1200);
         } catch {
             alert(lines);
         }
