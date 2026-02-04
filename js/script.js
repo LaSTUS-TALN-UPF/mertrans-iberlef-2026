@@ -74,7 +74,6 @@ function fmtDate(iso) {
 function escapeHtml(s) {
     return String(s)
         .replaceAll("&", "&amp;")
-        .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
@@ -87,12 +86,13 @@ function renderScheduleTable() {
 
     const items = [...schedule].sort((a, b) => a.date.localeCompare(b.date));
     tbody.innerHTML = items.map(item => `
-      <tr>
-        <td>${escapeHtml(item.title)}</td>
-        <td class="mono">${fmtDate(item.date)}</td>
-      </tr>
-    `).join("");
+    <tr>
+      <td>${escapeHtml(item.title)}</td>
+      <td class="mono">${fmtDate(item.date)}</td>
+    </tr>
+  `).join("");
 }
+
 
 // ------------------------
 // Mobile menu
@@ -123,18 +123,50 @@ function setupCopyDates() {
     const btn = document.getElementById("copyScheduleBtn");
     if (!btn) return;
 
-    btn.addEventListener("click", async () => {
-        const lines = [...schedule]
+    const DEFAULT_LABEL = "Copy dates as text";
+    const COPIED_LABEL = "Copied!";
+    const RESET_MS = 1200;
+
+    const buildLines = () =>
+        [...schedule]
+            .slice()
             .sort((a, b) => a.date.localeCompare(b.date))
-            // Table order after swap: Milestone — Date
-            .map(x => `${x.title}: ${fmtDate(x.date)}`)
+            .map(({date, title}) => `${title}: ${fmtDate(date)}`)
             .join("\n");
 
+    const setTempLabel = (text) => {
+        btn.textContent = text;
+        window.clearTimeout(setTempLabel._t);
+        setTempLabel._t = window.setTimeout(() => {
+            btn.textContent = DEFAULT_LABEL;
+        }, RESET_MS);
+    };
+
+    const copyText = async (text) => {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+
+        // Fallback: select/copy via a temporary textarea
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (!ok) throw new Error("Copy failed");
+    };
+
+    btn.addEventListener("click", async () => {
+        const lines = buildLines();
+
         try {
-            await navigator.clipboard.writeText(lines);
-            const original = btn.textContent;
-            btn.textContent = "Copied!";
-            setTimeout(() => (btn.textContent = original || "Copy dates as text"), 1200);
+            await copyText(lines);
+            setTempLabel(COPIED_LABEL);
         } catch {
             alert(lines);
         }
