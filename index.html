@@ -69,14 +69,16 @@
 
                 <div class="cta-row">
                     <a class="btn primary" href="https://forms.gle/ESxbUjVc9xr3iT4YA" target="_blank" rel="noopener">Registration</a>
-                    <a class="btn" href="#" target="_blank" rel="noopener">Mailing List</a>
+                    <a class="btn primary" href="assets/data/trial_data/trial_data.zip" download>Download Trial Data</a>
+                    <!--                    <a class="btn" href="#" target="_blank" rel="noopener">Mailing List</a>-->
                     <button class="btn" type="button" id="icsBtn">Download Dates (.ics)</button>
                 </div>
+
 
                 <div class="hero-badges" aria-label="Key facts">
                     <span class="badge">Languages: CA · IT · ES (+ surprise)</span>
                     <span class="badge">Up to 3 submissions / language</span>
-                    <span class="badge">Data: iDEM corpus (JSON)</span>
+                    <span class="badge">Data: iDEM corpus (CSV)</span>
                 </div>
             </div>
 
@@ -160,7 +162,7 @@
                         <li>Original + simplified versions aligned at sentence level</li>
                         <li>Not parallel across languages (but each language has original↔simplified pairs)</li>
                         <li>Authentic variation; multiple text types (informative, news, policy, etc.)</li>
-                        <li><strong>Format:</strong> JSON, one file per language with metadata</li>
+                        <li>Format: CSV, one file per language with metadata</li>
                     </ul>
                 </div>
 
@@ -205,13 +207,50 @@
                 </div>
             </div>
 
-            <div class="card">
-                <h3>Trial & Test</h3>
-                <ul>
-                    <li><strong>Trial:</strong> small set with complex excerpts + reference easy-to-read versions</li>
-                    <li><strong>Test:</strong> complex excerpts only (systems generate simplified outputs)</li>
-                </ul>
+            <div class="cards two-col">
+                <div class="card">
+                    <div class="card-head">
+                        <h3>Trial data</h3>
+                        <a class="btn primary download-btn"
+                           href="assets/data/trial_data/trial_data.zip"
+                           download
+                           title="Download"
+                           aria-label="Download Trial Data">↓</a>
+                    </div>
+
+                    <ul>
+                        <li><strong>Languages:</strong> Catalan, Italian, Spanish</li>
+                        <li><strong>Content:</strong> One full document per language together with its easy-language
+                            adaptation
+                        </li>
+                        <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
+                        <li><strong>Encoding:</strong> UTF-8</li>
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,
+                            <code>original_text</code>, <code>simplified_text</code></li>
+                    </ul>
+
+                    <p>
+                        <small>The iDEM corpus and annotation categories are described in:
+                            <a href="https://arxiv.org/abs/2603.05345" target="_blank" rel="noopener noreferrer">
+                                A Multilingual Human Annotated Corpus of Original and Easy-to-Read Texts to Support
+                                Access to Democratic Participatory Processes.
+                            </a>
+                            Bott, S., Riegler, V., Saggion, H., Rascón Alcaina, A., and Khallaf, N.
+                            To appear in the Language Resources and Evaluation Conference (LREC), 2026.
+                        </small>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Test data</h3>
+                    <ul>
+                        <li><strong>Input:</strong> complex excerpts only</li>
+                        <li><strong>Output:</strong> systems generate simplified versions</li>
+                        <li><strong>Use:</strong> official shared-task evaluation</li>
+                    </ul>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -273,7 +312,7 @@
                 <div class="card">
                     <h3>Participation</h3>
                     <ul>
-                        <li>Registration window: <span class="mono">Feb 5–Mar 5, 2026</span></li>
+                        <li>Registration window: <span class="mono">Feb 16–Mar 5, 2026</span></li>
                         <li>Submissions: up to 3 per language per team</li>
                     </ul>
                 </div>

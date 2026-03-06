@@ -458,6 +458,11 @@ html[data-theme="dark"] .table td {
     opacity: 0.9;
 }
 
+.table tr.past-deadline td {
+    text-decoration: line-through;
+    opacity: 0.65;
+}
+
 
 .pill {
     padding: 6px 10px;
@@ -690,4 +695,49 @@ html[data-theme="dark"] .pill {
 
 #organizers .organizer-text {
     min-width: 0;
+}
+
+
+.download-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 2.2rem;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
+    transition: 0.2s ease;
+}
+
+.download-icon:hover {
+    background: rgba(37, 99, 235, 0.14);
+    transform: translateY(-1px);
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.card-head h3 {
+    margin: 0;
+}
+
+.download-btn {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
 }

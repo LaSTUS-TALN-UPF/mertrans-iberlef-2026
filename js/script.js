@@ -80,19 +80,28 @@ function escapeHtml(s) {
         .replaceAll("'", "&#039;");
 }
 
+
 function renderScheduleTable() {
     const tbody = document.querySelector("#scheduleTable tbody");
     if (!tbody) return;
 
-    const items = [...schedule].sort((a, b) => a.date.localeCompare(b.date));
-    tbody.innerHTML = items.map(item => `
-    <tr>
-      <td>${escapeHtml(item.title)}</td>
-      <td class="mono">${fmtDate(item.date)}</td>
-    </tr>
-  `).join("");
-}
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
+    const items = [...schedule].sort((a, b) => a.date.localeCompare(b.date));
+
+    tbody.innerHTML = items.map(item => {
+        const itemDate = new Date(item.date + "T00:00:00");
+        const isPast = itemDate < today;
+
+        return `
+        <tr class="${isPast ? "past-deadline" : ""}">
+          <td>${escapeHtml(item.title)}</td>
+          <td class="mono">${fmtDate(item.date)}</td>
+        </tr>
+      `;
+    }).join("");
+}
 
 // ------------------------
 // Mobile menu
