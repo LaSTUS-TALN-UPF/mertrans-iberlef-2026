@@ -68,7 +68,8 @@
 
                 <div class="cta-row">
                     <a class="btn primary" href="https://forms.gle/ESxbUjVc9xr3iT4YA" target="_blank" rel="noopener">Registration</a>
-                    <a class="btn primary" href="assets/data/trial_data/trial_data.zip" download>Download Trial Data</a>
+                    <a class="btn primary" href="assets/data/trial_data/mertrans2026_trial_data.zip" download>Download Trial Data</a>
+                    <a class="btn primary" href="assets/data/test_data/mertrans2026_test_data.zip" download>Download Test Data</a>
                     <!--                    <a class="btn" href="#" target="_blank" rel="noopener">Mailing List</a>-->
                     <button class="btn" type="button" id="icsBtn">Download Dates (.ics)</button>
                 </div>
@@ -223,20 +224,20 @@
                     <div class="card-head">
                         <h3>Trial data</h3>
                         <a class="btn primary download-btn"
-                           href="assets/data/trial_data/trial_data.zip"
+                           href="assets/data/trial_data/mertrans2026_trial_data.zip"
                            download
                            title="Download"
                            aria-label="Download Trial Data">↓</a>
                     </div>
 
                     <ul>
-                        <li><strong>Languages:</strong> Catalan, Italian, Spanish</li>
+                        <li><strong>Languages:</strong> Catalan, Italian, Spanish, plus our surprise language: Arabic</li>
                         <li><strong>Content:</strong> One full document per language together with its easy-language
                             adaptation
                         </li>
                         <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
                         <li><strong>Encoding:</strong> UTF-8</li>
-                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code> language</code>,
                             <code>original_text</code>, <code>simplified_text</code></li>
                     </ul>
 
@@ -253,13 +254,32 @@
                 </div>
 
                 <div class="card">
-                    <h3>Test data</h3>
+                    <div class="card-head">
+                        <h3>Test data</h3>
+                        <a class="btn primary download-btn"
+                           href="assets/data/test_data/mertrans2026_test_data.zip"
+                           download
+                           title="Download"
+                           aria-label="Download Test Data">↓</a>
+                    </div>
+
                     <ul>
-                        <li><strong>Input:</strong> complex excerpts only</li>
-                        <li><strong>Output:</strong> systems generate simplified versions</li>
-                        <li><strong>Use:</strong> official shared-task evaluation</li>
+                        <li><strong>Languages:</strong> Catalan, Italian, Spanish, Arabic</li>
+                        <li><strong>Content:</strong> Complex excerpts only, without easy-language adaptations</li>
+                        <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
+                        <li><strong>Encoding:</strong> UTF-8</li>
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code> language</code>,
+                            <code>original_text</code></li>
                     </ul>
                 </div>
+<!--                <div class="card">-->
+<!--                    <h3>Test data</h3>-->
+<!--                    <ul>-->
+<!--                        <li><strong>Input:</strong> complex excerpts only</li>-->
+<!--                        <li><strong>Output:</strong> systems generate simplified versions</li>-->
+<!--                        <li><strong>Use:</strong> official shared-task evaluation</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
 
         </div>
