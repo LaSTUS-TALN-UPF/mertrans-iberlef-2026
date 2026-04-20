@@ -56,12 +56,14 @@ function initTheme() {
 const schedule = [
     {date: "2026-02-16", title: "Registration opens"},
     {date: "2026-03-05", title: "Registration closes"},
-    {date: "2026-03-06", title: "Trial data release"},
-    {date: "2026-04-08", title: "Test data release"},
-    {date: "2026-04-27", title: "System outputs submission deadline"},
+    {date: "2026-03-06", title: "Trial data released"},
+    {date: "2026-04-08", title: "Test data released"},
+    {date: "2026-04-20", title: "Submission instructions released"},
+    // {date: "2026-04-22", title: "Evaluation script released"},
+    {date: "2026-04-27", title: "System output submission deadline"},
     {date: "2026-05-11", title: "Evaluation results published"},
-    {date: "2026-06-01", title: "Papers due"},
-    {date: "2026-06-14", title: "Papers acceptance"},
+    {date: "2026-06-01", title: "Paper submission deadline"},
+    {date: "2026-06-14", title: "Paper acceptance notification"},
     {date: "2026-06-21", title: "Camera-ready papers due"},
     {date: "2026-09-22", title: "IberLEF 2026 Workshop"},
 ];
@@ -265,7 +267,7 @@ function setupMeta() {
     const last = document.getElementById("lastUpdated");
 
     if (year) year.textContent = "2026";
-    if (last) last.textContent = "April 08, 2026";
+    if (last) last.textContent = "20 April";
 
     const icsBtn = document.getElementById("icsBtn");
     if (icsBtn) icsBtn.addEventListener("click", downloadICS);
