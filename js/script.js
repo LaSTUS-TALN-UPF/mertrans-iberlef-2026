@@ -263,12 +263,9 @@ function downloadICS() {
 function setupMeta() {
     const year = document.getElementById("year");
     const last = document.getElementById("lastUpdated");
-    if (year) year.textContent = String(new Date().getFullYear());
-    if (last) last.textContent = new Date().toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "2-digit"
-    });
+
+    if (year) year.textContent = "2026";
+    if (last) last.textContent = "April 08, 2026";
 
     const icsBtn = document.getElementById("icsBtn");
     if (icsBtn) icsBtn.addEventListener("click", downloadICS);
