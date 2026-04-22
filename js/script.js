@@ -63,8 +63,8 @@ const schedule = [
     {date: "2026-04-27", title: "System output submission deadline"},
     {date: "2026-05-11", title: "Evaluation results published"},
     {date: "2026-06-01", title: "Paper submission deadline"},
-    {date: "2026-06-14", title: "Paper acceptance notification"},
-    {date: "2026-06-21", title: "Camera-ready papers due"},
+    {date: "2026-06-19", title: "Paper acceptance notification"},
+    {date: "2026-07-03", title: "Camera-ready papers due"},
     {date: "2026-09-22", title: "IberLEF 2026 Workshop"},
 ];
 
@@ -267,7 +267,7 @@ function setupMeta() {
     const last = document.getElementById("lastUpdated");
 
     if (year) year.textContent = "2026";
-    if (last) last.textContent = "20 April";
+    if (last) last.textContent = "22 April";
 
     const icsBtn = document.getElementById("icsBtn");
     if (icsBtn) icsBtn.addEventListener("click", downloadICS);
