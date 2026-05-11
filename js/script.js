@@ -64,7 +64,7 @@ const schedule = [
     {date: "2026-05-11", title: "Evaluation results published"},
     {date: "2026-06-01", title: "Paper submission deadline"},
     {date: "2026-06-19", title: "Paper acceptance notification"},
-    {date: "2026-07-03", title: "Camera-ready papers due"},
+    {date: "2026-06-27", title: "Camera-ready papers due"},
     {date: "2026-09-22", title: "IberLEF 2026 Workshop"},
 ];
 
