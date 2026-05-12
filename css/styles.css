@@ -666,6 +666,8 @@ html[data-theme="dark"] .pill {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    cursor: pointer;
+
 }
 
 #organizers .organizers-list li {
@@ -806,6 +808,10 @@ html[data-theme="dark"] .results-card {
     outline: none;
     font: inherit;
     transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.results-filter select {
+    cursor: pointer;
 }
 
 html[data-theme="dark"] .results-filter input,
