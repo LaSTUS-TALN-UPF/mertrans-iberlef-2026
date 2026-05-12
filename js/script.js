@@ -82,7 +82,6 @@ function escapeHtml(s) {
         .replaceAll("'", "&#039;");
 }
 
-
 function renderScheduleTable() {
     const tbody = document.querySelector("#scheduleTable tbody");
     if (!tbody) return;
@@ -184,7 +183,6 @@ function setupCopyDates() {
     });
 }
 
-
 // ------------------------
 // Email copy
 // ------------------------
@@ -267,7 +265,7 @@ function setupMeta() {
     const last = document.getElementById("lastUpdated");
 
     if (year) year.textContent = "2026";
-    if (last) last.textContent = "11 May";
+    if (last) last.textContent = "12 May";
 
     const icsBtn = document.getElementById("icsBtn");
     if (icsBtn) icsBtn.addEventListener("click", downloadICS);
@@ -290,12 +288,268 @@ function setupToTop() {
 }
 
 // ------------------------
+// Results Table
+// ------------------------
+let resultsData = [];
+
+let resultsState = {
+    teamFilter: "",
+    langFilter: "",
+    sortKey: "sari",
+    sortDir: "desc",
+};
+
+function parseCSVLine(line) {
+    const out = [];
+    let cur = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        const next = line[i + 1];
+
+        if (ch === '"' && inQuotes && next === '"') {
+            cur += '"';
+            i++;
+        } else if (ch === '"') {
+            inQuotes = !inQuotes;
+        } else if (ch === "," && !inQuotes) {
+            out.push(cur);
+            cur = "";
+        } else {
+            cur += ch;
+        }
+    }
+    out.push(cur);
+    return out;
+}
+
+function parseCSV(text) {
+    const lines = text
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n")
+        .split("\n")
+        .filter(line => line.trim() !== "");
+
+    if (!lines.length) return [];
+
+    const headers = parseCSVLine(lines[0]).map(h => h.trim());
+
+    return lines.slice(1).map(line => {
+        const values = parseCSVLine(line);
+        const row = {};
+
+        headers.forEach((header, idx) => {
+            row[header] = (values[idx] ?? "").trim();
+        });
+
+        return row;
+    });
+}
+
+function toNumber(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+}
+
+function formatScore(value, digits = 4) {
+    const n = toNumber(value);
+    return n === null ? "—" : n.toFixed(digits);
+}
+
+function getFilteredAndSortedResults() {
+    let rows = [...resultsData];
+
+    const teamQuery = resultsState.teamFilter.trim().toLowerCase();
+
+    if (teamQuery) {
+        rows = rows.filter(row =>
+            String(row.team_name || "").toLowerCase().includes(teamQuery)
+        );
+    }
+
+    const langQuery = resultsState.langFilter.trim().toLowerCase();
+
+    if (langQuery) {
+        rows = rows.filter(row =>
+            String(row.lang || "").trim().toLowerCase() === langQuery
+        );
+    }
+
+    if (resultsState.sortKey) {
+        const {sortKey, sortDir} = resultsState;
+
+        rows.sort((a, b) => {
+            const av = toNumber(a[sortKey]);
+            const bv = toNumber(b[sortKey]);
+
+            if (av === null && bv === null) return 0;
+            if (av === null) return 1;
+            if (bv === null) return -1;
+
+            return sortDir === "asc" ? av - bv : bv - av;
+        });
+    }
+
+    return rows;
+}
+
+function updateSortIndicators() {
+    document.querySelectorAll(".sort-indicator").forEach(el => {
+        const key = el.getAttribute("data-indicator-for");
+
+        if (key !== resultsState.sortKey) {
+            el.textContent = "↕";
+            return;
+        }
+
+        el.textContent = resultsState.sortDir === "asc" ? "↑" : "↓";
+    });
+}
+
+function renderResultsTable() {
+    const tbody = document.querySelector("#resultsTable tbody");
+    const count = document.getElementById("resultsCount");
+
+    if (!tbody) return;
+
+    const rows = getFilteredAndSortedResults();
+
+    if (count) {
+        count.textContent = `${rows.length} row${rows.length === 1 ? "" : "s"}`;
+    }
+
+    if (!rows.length) {
+        tbody.innerHTML = `
+            <tr class="results-empty">
+                <td colspan="7">No matching results found.</td>
+            </tr>
+        `;
+        updateSortIndicators();
+        return;
+    }
+
+    tbody.innerHTML = rows.map(row => `
+        <tr>
+            <td>${escapeHtml(row.team_name || "")}</td>
+            <td>${escapeHtml(row.lang || "")}</td>
+            <td class="mono">${escapeHtml(row.method || "")}</td>
+            <td>${formatScore(row.bleu_orig)}</td>
+            <td>${formatScore(row.bleu_gold)}</td>
+            <td>${formatScore(row.sari)}</td>
+            <td>${formatScore(row.bert)}</td>
+        </tr>
+    `).join("");
+
+    updateSortIndicators();
+}
+
+function populateLanguageFilter() {
+    const select = document.getElementById("langFilter");
+
+    if (!select) return;
+
+    const langs = [...new Set(
+        resultsData
+            .map(row => String(row.lang || "").trim())
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    select.innerHTML = `
+        <option value="">All languages</option>
+        ${langs.map(lang => `<option value="${escapeHtml(lang)}">${escapeHtml(lang)}</option>`).join("")}
+    `;
+
+    select.value = resultsState.langFilter || "";
+}
+
+async function loadResultsCSV() {
+    const tbody = document.querySelector("#resultsTable tbody");
+
+    try {
+        const res = await fetch("assets/data/scores/evaluation_summary.csv", {
+            cache: "no-store"
+        });
+
+        if (!res.ok) {
+            throw new Error(`Could not load CSV: HTTP ${res.status}`);
+        }
+
+        const text = await res.text();
+        const parsed = parseCSV(text);
+
+        resultsData = parsed.map(row => ({
+            team_name: row.team_name || "",
+            lang: row.lang || "",
+            method: row.method || "",
+            bleu_orig: row.bleu_orig || "",
+            bleu_gold: row.bleu_gold || "",
+            sari: row.sari || "",
+            bert: row.bert || "",
+        }));
+
+        populateLanguageFilter();
+        renderResultsTable();
+
+    } catch (err) {
+        console.error("Failed to load results CSV:", err);
+
+        if (tbody) {
+            tbody.innerHTML = `
+                <tr class="results-empty">
+                    <td colspan="7">${escapeHtml(String(err.message || err))}</td>
+                </tr>
+            `;
+        }
+    }
+}
+
+function setupResultsTable() {
+    const filterInput = document.getElementById("teamFilter");
+    const langSelect = document.getElementById("langFilter");
+    const sortButtons = document.querySelectorAll(".sort-btn");
+
+    if (filterInput) {
+        filterInput.addEventListener("input", () => {
+            resultsState.teamFilter = filterInput.value;
+            renderResultsTable();
+        });
+    }
+
+    if (langSelect) {
+        langSelect.addEventListener("change", () => {
+            resultsState.langFilter = langSelect.value;
+            renderResultsTable();
+        });
+    }
+
+    sortButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const key = btn.getAttribute("data-sort");
+
+            if (!key) return;
+
+            if (resultsState.sortKey === key) {
+                resultsState.sortDir = resultsState.sortDir === "asc" ? "desc" : "asc";
+            } else {
+                resultsState.sortKey = key;
+                resultsState.sortDir = "desc";
+            }
+
+            renderResultsTable();
+        });
+    });
+    loadResultsCSV();
+}
+
+// ------------------------
 // Boot
 // ------------------------
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     setupMenuToggle();
     renderScheduleTable();
+    setupResultsTable();
     setupCopyDates();
     setupEmailCopy();
     setupMeta();

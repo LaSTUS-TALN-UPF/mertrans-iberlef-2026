@@ -37,6 +37,7 @@
                 <a href="#task">Task</a>
                 <a href="#data">Data</a>
                 <a href="#evaluation">Evaluation</a>
+                <a href="#results">Results</a>
                 <a href="#schedule">Schedule</a>
                 <a href="#organizers">Organizers</a>
                 <a href="#contact">Contact</a>
@@ -75,7 +76,6 @@
                         Test Data</a>
                     <button class="btn" type="button" id="icsBtn">Download Dates (.ics)</button>
                 </div>
-
 
                 <div class="hero-badges" aria-label="Key facts">
                     <span class="badge">Languages: CA · IT · ES (+ surprise)</span>
@@ -286,9 +286,8 @@
                         <li><strong>Content:</strong> Complex excerpts only, without easy-language adaptations</li>
                         <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
                         <li><strong>Encoding:</strong> UTF-8</li>
-                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code>
-                            language</code>,
-                            <code>original_text</code></li>
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code>language</code>,<code>original_text</code>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -332,7 +331,87 @@
         </div>
     </section>
 
-    <section id="schedule" class="section">
+    <section id="results" class="section results-section">
+        <div class="container">
+            <h2>Official Results</h2>
+            <div class="results-card">
+                <div class="card-head">
+                    <p>Results are shown per team, language, and submitted method. Click any score column to sort the
+                        table.</p>
+                    <a class="btn primary download-btn"
+                       href="assets/data/scores/evaluation_summary.csv"
+                       download
+                       title="Download"
+                       aria-label="Download Evaluation Results">↓
+                    </a>
+                </div>
+
+                <div class="results-controls">
+                    <div class="results-filter">
+                        <label for="teamFilter">Filter by team name</label>
+                        <input
+                                id="teamFilter"
+                                type="text"
+                                placeholder="Type your team name..."
+                                autocomplete="off"
+                                aria-label="Filter results by team name"
+                        />
+                    </div>
+
+                    <div class="results-filter">
+                        <label for="langFilter">Language</label>
+                        <select id="langFilter" aria-label="Filter results by language">
+                            <option value="">All languages</option>
+                        </select>
+                    </div>
+
+                    <div class="results-count-wrap">
+                        <span class="results-count" id="resultsCount">0 rows</span>
+                    </div>
+                </div>
+
+                <div class="table-wrap results-table-wrap" role="region" aria-label="Evaluation results table"
+                     tabindex="0">
+                    <table class="table results-table" id="resultsTable">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Language</th>
+                            <th>Method</th>
+                            <th>
+                                <button class="sort-btn" type="button" data-sort="bleu_orig">
+                                    BLEU-Orig <span class="sort-indicator" data-indicator-for="bleu_orig">↕</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-btn" type="button" data-sort="bleu_gold">
+                                    BLEU-Gold <span class="sort-indicator" data-indicator-for="bleu_gold">↕</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-btn" type="button" data-sort="sari">
+                                    SARI <span class="sort-indicator" data-indicator-for="sari">↕</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-btn" type="button" data-sort="bert">
+                                    BERT-Score <span class="sort-indicator" data-indicator-for="bert">↕</span>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <p class="table-note">
+                    Higher scores are better for BLEU, SARI, and BERT-Score.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="section alt">
         <div class="container">
             <h2>Schedule</h2>
             <div class="card">
@@ -379,7 +458,7 @@
         </div>
     </section>
 
-    <section id="organizers" class="section alt">
+    <section id="organizers" class="section">
         <div class="container">
             <h2>Organization team</h2>
             <ul class="clean-list organizers-list">
@@ -453,7 +532,7 @@
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section alt">
         <div class="container">
             <h2>Contact</h2>
             <div class="grid two">
@@ -550,7 +629,7 @@
 
                 <div class="muted footer-meta">
                     © <span id="year"></span> • Last updated: <span id="lastUpdated"></span>
-                    <div class="footer-credit">Website implemented by Mehrzad Tareh</div>
+                    <div class="footer-credit">Website implemented by <a href="https://www.linkedin.com/in/mehrzad-tareh" target="_blank"> Mehrzad Tareh</a></div>
                 </div>
             </div>
         </div>
