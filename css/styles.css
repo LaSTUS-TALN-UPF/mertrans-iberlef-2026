@@ -390,7 +390,6 @@ html[data-theme="dark"] .clean-list li {
 
 .card a {
     color: #06c;
-    text-decoration: underline;
 }
 
 .card a:visited {
