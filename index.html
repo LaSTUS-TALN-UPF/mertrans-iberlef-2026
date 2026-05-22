@@ -252,7 +252,7 @@
                         <li><strong>Content:</strong> One full document per language together with its easy-language
                             adaptation
                         </li>
-                        <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
+                        <li><strong>Format:</strong> ZIP archive with 4 CSV files</li>
                         <li><strong>Encoding:</strong> UTF-8</li>
                         <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code>
                             language</code>,
@@ -284,14 +284,44 @@
                     <ul>
                         <li><strong>Languages:</strong> Catalan, Italian, Spanish, Arabic</li>
                         <li><strong>Content:</strong> Complex excerpts only, without easy-language adaptations</li>
-                        <li><strong>Format:</strong> ZIP archive with 3 CSV files</li>
+                        <li><strong>Format:</strong> ZIP archive with 4 CSV files</li>
                         <li><strong>Encoding:</strong> UTF-8</li>
-                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,<code>language</code>,<code>original_text</code>
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,
+                            <code>language</code>, <code>original_text</code>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <h3>Gold data</h3>
+                        <a class="btn primary download-btn"
+                           href="assets/data/gold_data/mertrans2026_gold_data.zip"
+                           download
+                           title="Download"
+                           aria-label="Download Gold Data">↓</a>
+                    </div>
+
+                    <ul>
+                        <li><strong>Languages:</strong> Catalan, Italian, Spanish, Arabic</li>
+                        <li><strong>Content:</strong> Official gold easy-language references for the test set</li>
+                        <li><strong>Format:</strong> ZIP archive with 4 CSV files, one per language</li>
+                        <li><strong>Encoding:</strong> UTF-8</li>
+                        <li><strong>Columns:</strong> <code>document_id</code>, <code>original_sentence_id</code>,
+                            <code>language</code>, <code>original_text</code>, <code>simplified_text</code></li>
+                        <li><strong>Purpose:</strong> This gold set is released after the official evaluation deadline
+                            to support score reproduction, error analysis, comparison with reference adaptations, and
+                            post-evaluation experiments for system papers.
+                        </li>
+                        <li><strong>Usage:</strong> To obtain the actual evaluation results for your system, replace the
+                            sample/trial files used by the evaluator with these official gold files and run the
+                            evaluator following the repository instructions.
+                        </li>
+                        <li><strong>Note:</strong> Results obtained after accessing the gold data must be reported as
+                            post-evaluation results and do not affect the official ranking.
                         </li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </section>
 
