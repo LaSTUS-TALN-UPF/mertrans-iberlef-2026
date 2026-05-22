@@ -62,6 +62,7 @@ const schedule = [
     {date: "2026-04-22", title: "Evaluation script released"},
     {date: "2026-04-27", title: "System output submission deadline"},
     {date: "2026-05-11", title: "Evaluation results published"},
+    {date: "2026-05-22", title: "Gold data released"},
     {date: "2026-06-01", title: "Paper submission deadline"},
     {date: "2026-06-19", title: "Paper acceptance notification"},
     {date: "2026-06-27", title: "Camera-ready papers due"},
