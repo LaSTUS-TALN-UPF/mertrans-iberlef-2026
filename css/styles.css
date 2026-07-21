@@ -105,23 +105,28 @@ a {
 }
 
 .brand-mark {
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, .14), rgba(124, 58, 237, .12));
-    border: 1px solid var(--border);
-    font-weight: 800;
+    width: 90px;
+    height: 90px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    border-radius: 0;
 }
 
-html[data-theme="dark"] .brand-mark {
-    background: linear-gradient(135deg, rgba(125, 211, 252, .25), rgba(167, 139, 250, .22));
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
 }
 
 .brand-title {
     font-weight: 800;
-    letter-spacing: .3px;
+    letter-spacing: 0.3px;
 }
 
 .brand-subtitle {
@@ -649,7 +654,7 @@ html[data-theme="dark"] .pill {
 
     border: 1px solid var(--border);
     background: var(--panel);
-    color: var(--text);
+    color: rebeccapurple;
     box-shadow: var(--shadow);
 
     display: grid;
