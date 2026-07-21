@@ -654,7 +654,7 @@ html[data-theme="dark"] .pill {
 
     border: 1px solid var(--border);
     background: var(--panel);
-    color: rebeccapurple;
+    color: var(--text);
     box-shadow: var(--shadow);
 
     display: grid;
