@@ -101,7 +101,7 @@ a {
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 7px;
 }
 
 .brand-mark {
@@ -198,7 +198,7 @@ a {
 
 .nav a {
     text-decoration: none;
-    padding: 10px 10px;
+    padding: 10px 6px;
     border-radius: 12px;
     color: var(--muted);
 }
@@ -638,7 +638,7 @@ html[data-theme="dark"] .pill {
     }
 
     .nav a {
-        padding: 10px 12px;
+        padding: 10px 10px;
     }
 }
 
@@ -990,4 +990,41 @@ html[data-theme="dark"] .results-table tbody tr:hover {
     .results-count {
         width: 100%;
     }
+}
+
+.program-card {
+    margin-top: 18px;
+}
+
+.program-table {
+    min-width: 720px;
+}
+
+.program-table td:first-child {
+    width: 100px;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: 800;
+
+}
+
+.program-title {
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.program-authors {
+    display: block;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.program-table tbody tr:hover {
+    background: rgba(37, 99, 235, 0.045);
+}
+
+html[data-theme="dark"] .program-table tbody tr:hover {
+    background: rgba(125, 211, 252, 0.06);
 }
