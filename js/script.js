@@ -67,6 +67,7 @@ const schedule = [
     {date: "2026-06-19", title: "Paper acceptance notification"},
     {date: "2026-06-27", title: "Camera-ready papers due"},
     {date: "2026-09-22", title: "IberLEF 2026 Workshop"},
+    {date: "2026-09-29", title: "IberLEF 2026 proceedings"},
 ];
 
 function fmtDate(iso) {
