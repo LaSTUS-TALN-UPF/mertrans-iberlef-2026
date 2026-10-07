@@ -266,7 +266,7 @@ function setupMeta() {
     const last = document.getElementById("lastUpdated");
 
     if (year) year.textContent = "2026";
-    if (last) last.textContent = "27 July";
+    if (last) last.textContent = "05 October";
 
     const icsBtn = document.getElementById("icsBtn");
     if (icsBtn) icsBtn.addEventListener("click", downloadICS);

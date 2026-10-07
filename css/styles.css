@@ -1028,3 +1028,7 @@ html[data-theme="dark"] .results-table tbody tr:hover {
 html[data-theme="dark"] .program-table tbody tr:hover {
     background: rgba(125, 211, 252, 0.06);
 }
+
+.program-card .callout {
+    margin-bottom: 14px;
+}
